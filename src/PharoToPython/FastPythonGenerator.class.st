@@ -82,7 +82,7 @@ Class {
 
 { #category : #accessing }
 FastPythonGenerator class >> packageName [
-	^ 'FASTPython'
+	^ 'PharoToPython'
 ]
 
 { #category : #accessing }
@@ -329,9 +329,9 @@ FastPythonGenerator >> defineRelations [
    (for property: #iterationVar)  <>- (assignedTarget property: #for).
    (binOp property: #left)  <>- (expression property: #binOp).
    (binOp property: #right)  <>- (expression property: #binOp).
-   (binOp property: #op)  <>- (operationSymbol property: #binOp).
+   (binOp property: #op)  *- (operationSymbol property: #binOp).
    (unOp property: #expr)  <>- (expression property: #unOp).
-   (unOp property: #op)  <>- (operationSymbol property: #unOp).
+   (unOp property: #op)  *- (operationSymbol property: #unOp).
    (ifExpression property: #else)  <>- (expression property: #ifExpression).
    (ifExpression property: #body)  <>- (expression property: #ifExpression).
    (ifExpression property: #cond)  <>- (expression property: #ifExpression).
