@@ -9,7 +9,8 @@ BaselineOfPharoToPythonTranspilation >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ spec
+		do: [ spec package: 'PharoToPython'.
+			spec
 				baseline: 'FASTPharo'
 				with: [ spec repository: 'github:///moosetechnology/FAST-Pharo:master/src' ] ]
 ]
