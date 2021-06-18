@@ -14,7 +14,7 @@ PharoToPythonExperiment class >> transformToPython: aFASTPharoMethodEntity [
 
 { #category : #transflation }
 PharoToPythonExperiment >> expressionRule: anExpression [
-	| result resultNumber |
+	| result resultNumber resultString |
 	result := (FASTLiteral suchAs: {(#value -> #'@value')})
 		match: anExpression.
 	result isMatch
@@ -23,6 +23,14 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 			resultNumber isMatch
 				ifTrue: [ ^ FASTPythonInteger new
 						value: (resultNumber at: #value);
+						startPos: 0;
+						endPos: 1;
+						yourself ].
+			resultString := (FASTStringLiteral suchAs: {(#value -> #'@value')})
+				match: anExpression.
+			resultString
+				ifTrue: [ ^ FASTPythonString new
+						value: (resultString at: #value);
 						startPos: 0;
 						endPos: 1;
 						yourself ].
