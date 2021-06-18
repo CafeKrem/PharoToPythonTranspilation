@@ -251,6 +251,7 @@ FastPythonGenerator >> defineProperties [
  
   "declaration property: #name type: #String."
   asynchronable property: #isAsync type: #Boolean.
+	functionDeclaration property: #name type: #String.
   parameter property: #name type: #String.
  " sFunction property: #name type: #String.
   sFunction property: #isClassSide type: #Boolean.
