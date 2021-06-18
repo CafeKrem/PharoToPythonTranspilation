@@ -309,7 +309,7 @@ FastPythonGenerator >> defineRelations [
    (while property: #cond)  <>- (expression property: #while).
    (while property: #body)  <>-* (statement property: #while).
    (assign property: #right)  <>- (expression property: #assign).
-   (expressionStatement property: #expr)  <>- (expression property: #expressionStatement).
+  (expressionStatement property: #expr)  <>- (expression property: #expressionStatement).
    (expression property: #parentForIterable)  -<> (for property: #iterable).
    (try property: #body)  <>-* (statement property: #try).
    (try property: #finaly)  <>-* (statement property: #try).
@@ -329,9 +329,9 @@ FastPythonGenerator >> defineRelations [
    (for property: #iterationVar)  <>- (assignedTarget property: #for).
    (binOp property: #left)  <>- (expression property: #binOp).
    (binOp property: #right)  <>- (expression property: #binOp).
-   (binOp property: #op)  - (operationSymbol property: #binOp).
+   (binOp property: #op)  <>- (operationSymbol property: #binOp).
    (unOp property: #expr)  <>- (expression property: #unOp).
-   (unOp property: #op)  - (operationSymbol property: #unOp).
+   (unOp property: #op)  <>- (operationSymbol property: #unOp).
    (ifExpression property: #else)  <>- (expression property: #ifExpression).
    (ifExpression property: #body)  <>- (expression property: #ifExpression).
    (ifExpression property: #cond)  <>- (expression property: #ifExpression).
