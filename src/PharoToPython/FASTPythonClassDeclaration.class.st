@@ -2,6 +2,7 @@ Class {
 	#name : #FASTPythonClassDeclaration,
 	#superclass : #FASTStatement,
 	#instVars : [
+		'#packageName => FMProperty',
 		'#superClasses => FMMany type: #FASTPythonVarRef opposite: #classDeclaration'
 	],
 	#category : #'PharoToPython-Entities'
@@ -50,6 +51,20 @@ FASTPythonClassDeclaration >> bodyGroup [
 	<generated>
 	<navigation: 'Body'>
 	^ MooseSpecializedGroup withAll: self body asSet
+]
+
+{ #category : #accessing }
+FASTPythonClassDeclaration >> packageName [
+
+	<FMProperty: #packageName type: #String>
+	<generated>
+	^ packageName
+]
+
+{ #category : #accessing }
+FASTPythonClassDeclaration >> packageName: anObject [
+	<generated>
+	packageName := anObject
 ]
 
 { #category : #accessing }

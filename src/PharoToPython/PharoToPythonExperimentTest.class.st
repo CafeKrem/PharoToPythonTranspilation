@@ -13,6 +13,12 @@ PharoToPythonExperimentTest >> importFASTPharo: aString [
 		runWithSource: (self class >> aString) sourceCode
 ]
 
+{ #category : #util }
+PharoToPythonExperimentTest >> importFASTPharo: aString withClass: aClass [
+	^ FASTSmalltalkImporterVisitor new
+		runWithSource: (aClass >> aString) sourceCode
+]
+
 { #category : #accessing }
 PharoToPythonExperimentTest >> method1 [ 
 	^ 10
@@ -41,6 +47,18 @@ PharoToPythonExperimentTest >> methodString [
 PharoToPythonExperimentTest >> methodTemporaryAssignement [
 	| a |
 	a := 10
+]
+
+{ #category : #tests }
+PharoToPythonExperimentTest >> testTranslateAnObject [
+	| model pythonModel |
+	model := TranspilationTestClass.
+	pythonModel := PharoToPythonExperiment transformToPythonClass: model.
+	self assert: pythonModel packageName equals: #PharoToPython.
+	self assert: pythonModel superClasses first name equals: #Object.
+	self
+		assertCollection: (pythonModel body collect: #name)
+		hasSameElements: {#a . #b}
 ]
 
 { #category : #tests }

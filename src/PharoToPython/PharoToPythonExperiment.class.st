@@ -12,6 +12,11 @@ PharoToPythonExperiment class >> transformToPython: aFASTPharoMethodEntity [
 	^ self new main: aFASTPharoMethodEntity
 ]
 
+{ #category : #API }
+PharoToPythonExperiment class >> transformToPythonClass: aClass [
+	^ self new objectRule: aClass
+]
+
 { #category : #transflation }
 PharoToPythonExperiment >> expressionRule: anExpression [
 	| result resultNumber resultString |
@@ -94,6 +99,12 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 	1 halt
 ]
 
+{ #category : #util }
+PharoToPythonExperiment >> importFASTPharo: aString withClass: aClass [
+	^ FASTSmalltalkImporterVisitor new
+		runWithSource: (aClass >> aString) sourceCode
+]
+
 { #category : #action }
 PharoToPythonExperiment >> main: aFASTPharoMethodEntity [
 	| methodRuleResult statementRuleResult parameterRuleReult methodPython |
@@ -117,6 +128,26 @@ PharoToPythonExperiment >> main: aFASTPharoMethodEntity [
 		startPos: 0;
 		endPos: 1.
 	^ methodPython
+]
+
+{ #category : #rule }
+PharoToPythonExperiment >> objectRule: aClass [
+	| methods pyModel |
+	methods := aClass allMethods
+		select: [ :each | each classBinding value = aClass ].
+	pyModel := FASTPythonClassDeclaration new
+		addSuperClass: (self superClassRule: aClass superclass);
+		packageName: aClass package name;
+		startPos: 0;
+		endPos: 1;
+		yourself.
+	pyModel
+		body:
+			(methods
+				collect: [ :eachMethod | 
+					self
+						main: (self importFASTPharo: eachMethod selector withClass: aClass) ]).
+	^ pyModel
 ]
 
 { #category : #rule }
@@ -158,4 +189,17 @@ PharoToPythonExperiment >> statementRuleBis: aStatement [
 				startPos: 0;
 				endPos: 1 yourself ].
 	1 halt
+]
+
+{ #category : #rule }
+PharoToPythonExperiment >> superClassRule: aClass [
+	| result |
+	result := ({Object} isContained named: #class) match: aClass.
+	result isMatch
+		ifTrue: [ ^ FASTPythonVarRef new
+				name: #Object;
+				yourself ].
+	^ FASTPythonVarRef new
+		name: aClass name asSymbol;
+		yourself
 ]

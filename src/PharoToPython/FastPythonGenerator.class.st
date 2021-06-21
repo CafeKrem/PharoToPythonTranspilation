@@ -254,7 +254,7 @@ FastPythonGenerator >> defineProperties [
 	exception property: #name type: #String.
 	exception property: #description type: #String.
 	operationAssignement property: #operation type: #String. 
-
+	classDeclaration property: #packageName type: #String.
 	"declaration property: #name type: #String."
 	asynchronable property: #isAsync type: #Boolean.
 	functionDeclaration property: #name type: #String.
