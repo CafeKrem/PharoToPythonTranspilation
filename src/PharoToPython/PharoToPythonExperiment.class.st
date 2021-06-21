@@ -43,7 +43,8 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 			(#receiver -> #'@receiver')}) match: anExpression.
 	result isMatch
 		ifTrue: [ (#binary asMatcher match: (result at: #arity)) isMatch
-				ifTrue: [^ FASTPythonBinOp new
+				ifTrue: [ 
+					^ FASTPythonBinOp new
 						left: (self expressionRule: (result at: #receiver));
 						right:
 							(self
@@ -51,10 +52,7 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 									((result at: #arguments) size = 1
 										ifTrue: [ (result at: #arguments) first ]
 										ifFalse: [ 1 halt ]));
-						op:
-							(FASTPythonOperationSymbol new
-								op: (result at: #selector);
-								yourself);
+						op: (self selectorRule: (result at: #selector));
 						startPos: 0;
 						endPos: 1;
 						yourself ].
@@ -90,6 +88,16 @@ PharoToPythonExperiment >> main: aFASTPharoMethodEntity [
 { #category : #rule }
 PharoToPythonExperiment >> parameterRule: aCollection [ 
 	^ aCollection collect: [:each | self parameterRulebBis:  each  ]
+]
+
+{ #category : #rule }
+PharoToPythonExperiment >> selectorRule: aFASTPharoSelector [
+	| result |
+	result := (FASTPharoSelector suchAs: {(#name -> #'@selector')})
+		match: aFASTPharoSelector.
+	result isMatch
+		ifTrue: [ ^ result at: #selector ].
+	1 halt
 ]
 
 { #category : #rule }

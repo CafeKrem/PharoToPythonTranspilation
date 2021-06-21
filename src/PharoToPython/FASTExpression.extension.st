@@ -131,32 +131,6 @@ FASTExpression >> await: anObject [
 ]
 
 { #category : #'*PharoToPython-accessing' }
-FASTExpression >> binOp [
-	"Relation named: #binOp type: #FASTPythonBinOp opposite: #left"
-
-	<generated>
-	<container>
-	<derived>
-	<FMProperty: #binOp type: #FASTPythonBinOp opposite: #left>
-	<package: #'PharoToPython'>
-	^ self attributeAt: #binOp ifAbsent: [ nil ]
-]
-
-{ #category : #'*PharoToPython-accessing' }
-FASTExpression >> binOp: anObject [
-
-	<generated>
-	(self attributeAt: #binOp ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
-	anObject ifNil: [ | otherSide |
-		otherSide :=  self binOp.
-		self attributeAt: #binOp put: anObject.
-		otherSide left: nil ]
-	ifNotNil: [ 
-		self attributeAt: #binOp put: anObject.
-		anObject left: self ]
-]
-
-{ #category : #'*PharoToPython-accessing' }
 FASTExpression >> call [
 	"Relation named: #call type: #FASTPythonCall opposite: #left"
 
@@ -397,6 +371,58 @@ FASTExpression >> list: anObject [
 
 	<generated>
 	self attributeAt: #list put: (FMMultivalueLink on: self update: #contents from: self list to: anObject).
+]
+
+{ #category : #'*PharoToPython-accessing' }
+FASTExpression >> parentBinOpLeft [
+	"Relation named: #parentBinOpLeft type: #FASTPythonBinOp opposite: #left"
+
+	<generated>
+	<container>
+	<derived>
+	<FMProperty: #parentBinOpLeft type: #FASTPythonBinOp opposite: #left>
+	<package: #'PharoToPython'>
+	^ self attributeAt: #parentBinOpLeft ifAbsent: [ nil ]
+]
+
+{ #category : #'*PharoToPython-accessing' }
+FASTExpression >> parentBinOpLeft: anObject [
+
+	<generated>
+	(self attributeAt: #parentBinOpLeft ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self parentBinOpLeft.
+		self attributeAt: #parentBinOpLeft put: anObject.
+		otherSide left: nil ]
+	ifNotNil: [ 
+		self attributeAt: #parentBinOpLeft put: anObject.
+		anObject left: self ]
+]
+
+{ #category : #'*PharoToPython-accessing' }
+FASTExpression >> parentBinOpRight [
+	"Relation named: #parentBinOpRight type: #FASTPythonBinOp opposite: #right"
+
+	<generated>
+	<container>
+	<derived>
+	<FMProperty: #parentBinOpRight type: #FASTPythonBinOp opposite: #right>
+	<package: #'PharoToPython'>
+	^ self attributeAt: #parentBinOpRight ifAbsent: [ nil ]
+]
+
+{ #category : #'*PharoToPython-accessing' }
+FASTExpression >> parentBinOpRight: anObject [
+
+	<generated>
+	(self attributeAt: #parentBinOpRight ifAbsentPut: [nil]) == anObject ifTrue: [ ^ anObject ].
+	anObject ifNil: [ | otherSide |
+		otherSide :=  self parentBinOpRight.
+		self attributeAt: #parentBinOpRight put: anObject.
+		otherSide right: nil ]
+	ifNotNil: [ 
+		self attributeAt: #parentBinOpRight put: anObject.
+		anObject right: self ]
 ]
 
 { #category : #'*PharoToPython-accessing' }

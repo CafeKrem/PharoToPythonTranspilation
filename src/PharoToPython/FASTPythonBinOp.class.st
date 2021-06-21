@@ -2,7 +2,7 @@ Class {
 	#name : #FASTPythonBinOp,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'#op => FMMany type: #FASTPythonOperationSymbol opposite: #binOp'
+		'#op => FMProperty'
 	],
 	#category : #'PharoToPython-Entities'
 }
@@ -18,10 +18,10 @@ FASTPythonBinOp class >> annotation [
 
 { #category : #accessing }
 FASTPythonBinOp >> left [
-	"Relation named: #left type: #FASTExpression opposite: #binOp"
+	"Relation named: #left type: #FASTExpression opposite: #parentBinOpLeft"
 
 	<generated>
-	<FMProperty: #left type: #FASTExpression opposite: #binOp>
+	<FMProperty: #left type: #FASTExpression opposite: #parentBinOpLeft>
 	^ self attributeAt: #left ifAbsent: [ nil ]
 ]
 
@@ -33,10 +33,10 @@ FASTPythonBinOp >> left: anObject [
 	anObject ifNil: [ | otherSide |
 		otherSide :=  self left.
 		self attributeAt: #left put: anObject.
-		otherSide binOp: nil ]
+		otherSide parentBinOpLeft: nil ]
 	ifNotNil: [ 
 		self attributeAt: #left put: anObject.
-		anObject binOp: self ]
+		anObject parentBinOpLeft: self ]
 ]
 
 { #category : #navigation }
@@ -48,25 +48,24 @@ FASTPythonBinOp >> leftGroup [
 
 { #category : #accessing }
 FASTPythonBinOp >> op [
-	"Relation named: #op type: #FASTPythonOperationSymbol opposite: #binOp"
 
+	<FMProperty: #op type: #String>
 	<generated>
 	^ op
 ]
 
 { #category : #accessing }
 FASTPythonBinOp >> op: anObject [
-
 	<generated>
 	op := anObject
 ]
 
 { #category : #accessing }
 FASTPythonBinOp >> right [
-	"Relation named: #right type: #FASTExpression opposite: #binOp"
+	"Relation named: #right type: #FASTExpression opposite: #parentBinOpRight"
 
 	<generated>
-	<FMProperty: #right type: #FASTExpression opposite: #binOp>
+	<FMProperty: #right type: #FASTExpression opposite: #parentBinOpRight>
 	^ self attributeAt: #right ifAbsent: [ nil ]
 ]
 
@@ -78,10 +77,10 @@ FASTPythonBinOp >> right: anObject [
 	anObject ifNil: [ | otherSide |
 		otherSide :=  self right.
 		self attributeAt: #right put: anObject.
-		otherSide binOp: nil ]
+		otherSide parentBinOpRight: nil ]
 	ifNotNil: [ 
 		self attributeAt: #right put: anObject.
-		anObject binOp: self ]
+		anObject parentBinOpRight: self ]
 ]
 
 { #category : #navigation }

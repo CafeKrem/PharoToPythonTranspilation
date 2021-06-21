@@ -46,7 +46,6 @@ PharoToPythonExperimentTest >> testTranslateMethodComputationOperation [
 	| model pythonModel allStatement |
 	model := self importFASTPharo: #methodOperation.
 	pythonModel := PharoToPythonExperiment transformToPython: model.
-	1 halt.
 	allStatement := pythonModel body
 		collect: [ :each | each expression value ].
 	self

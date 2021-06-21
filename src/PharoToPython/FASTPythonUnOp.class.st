@@ -2,7 +2,7 @@ Class {
 	#name : #FASTPythonUnOp,
 	#superclass : #FASTExpression,
 	#instVars : [
-		'#op => FMOne type: #FASTPythonOperationSymbol opposite: #unOp'
+		'#op => FMProperty'
 	],
 	#category : #'PharoToPython-Entities'
 }
@@ -48,15 +48,14 @@ FASTPythonUnOp >> exprGroup [
 
 { #category : #accessing }
 FASTPythonUnOp >> op [
-	"Relation named: #op type: #FASTPythonOperationSymbol opposite: #unOp"
 
+	<FMProperty: #op type: #String>
 	<generated>
 	^ op
 ]
 
 { #category : #accessing }
 FASTPythonUnOp >> op: anObject [
-
 	<generated>
 	op := anObject
 ]
