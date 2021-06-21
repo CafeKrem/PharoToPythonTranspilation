@@ -1,6 +1,6 @@
 Class {
 	#name : #FASTPythonAssignExpression,
-	#superclass : #FASTPythonEntity,
+	#superclass : #FASTExpression,
 	#instVars : [
 		'#left => FMOne type: #FASTPythonAssignedTarget opposite: #assignExpression'
 	],
@@ -10,7 +10,7 @@ Class {
 { #category : #meta }
 FASTPythonAssignExpression class >> annotation [
 
-	<FMClass: #AssignExpression super: #FASTPythonEntity>
+	<FMClass: #AssignExpression super: #FASTExpression>
 	<package: #PharoToPython>
 	<generated>
 	^self

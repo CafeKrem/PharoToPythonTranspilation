@@ -43,8 +43,7 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 			(#receiver -> #'@receiver')}) match: anExpression.
 	result isMatch
 		ifTrue: [ (#binary asMatcher match: (result at: #arity)) isMatch
-				ifTrue: [ 
-					^ FASTPythonBinOp new
+				ifTrue: [ ^ FASTPythonBinOp new
 						left: (self expressionRule: (result at: #receiver));
 						right:
 							(self
@@ -57,6 +56,25 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 						endPos: 1;
 						yourself ].
 			1 halt ].
+	result := (FASTPharoAssignmentExpression
+		suchAs:
+			{(#variable -> #'@left').
+			(#expression -> #'@right')}) match: anExpression.
+	result isMatch
+		ifTrue: [ ^ FASTPythonAssignExpression new
+				left: (self expressionRule: (result at: #left));
+				right: (self expressionRule: (result at: #right));
+				startPos: 0;
+				endPos: 1;
+				yourself ].
+	result := (FASTVariableExpression suchAs: {(#name -> #'@varName')})
+		match: anExpression.
+	result isMatch
+		ifTrue: [ ^ FASTPythonVarRef new
+				name: (result at: #varName);
+				startPos: 0;
+				endPos: 1;
+				yourself ].
 	1 halt
 ]
 
@@ -121,6 +139,7 @@ PharoToPythonExperiment >> statementRuleBis: aStatement [
 	result isMatch
 		ifTrue: [ ^ FASTPythonExpressionStatement new
 				expression: (self expressionRule: (result at: #expression));
-				yourself ].
+				startPos: 0;
+				endPos: 1 yourself ].
 	1 halt
 ]

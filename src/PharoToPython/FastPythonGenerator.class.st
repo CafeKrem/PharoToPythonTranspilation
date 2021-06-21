@@ -172,72 +172,72 @@ FastPythonGenerator >> defineClasses [
 
 { #category : #definition }
 FastPythonGenerator >> defineHierarchy [
-  super defineHierarchy.
-
-  return --|> returnFAST.
-  if --|> statement.
-  while --|> statement.
-  assign --|> statement.
-  pass --|> statement.
-  expressionStatement --|> expressionStatementFAST.
-  expression --|> subscriptionIndex.
-  try --|> statement.
-  raise --|> statement.
-  assert --|> statement.
- " varDeclaration --|> declaration."
-  slice --|> subscriptionIndex.
-  yield --|> statement.
-  await --|> statement.
-  yieldFrom --|> statement.
-  formattedValue --|> joinedStringItem.
-  break --|> statement.
-  continue --|> statement.
-  global --|> statement.
-  nonLocal --|> statement.
-  for --|> statement.
-  for --|> asynchronable.
-  binOp --|> expression.
-  unOp --|> expression.
-  ifExpression --|> expression.
-  "sFunction --|> statement.
+	super defineHierarchy.
+	return --|> returnFAST.
+	if --|> statement.
+	while --|> statement.
+	assign --|> statement.
+	pass --|> statement.
+	expressionStatement --|> expressionStatementFAST.
+	expression --|> subscriptionIndex.
+	try --|> statement.
+	raise --|> statement.
+	assert --|> statement.
+	" varDeclaration --|> declaration."
+	slice --|> subscriptionIndex.
+	yield --|> statement.
+	await --|> statement.
+	yieldFrom --|> statement.
+	formattedValue --|> joinedStringItem.
+	break --|> statement.
+	continue --|> statement.
+	global --|> statement.
+	nonLocal --|> statement.
+	for --|> statement.
+	for --|> asynchronable.
+	binOp --|> expression.
+	unOp --|> expression.
+	ifExpression --|> expression.
+	"sFunction --|> statement.
   sFunction --|> asynchronable.
   sClass --|> statement.
   sClass --|> asynchronable."
-  literal --|> expression.
-  lambda --|> expression.
-  call --|> expression.
-  with --|> statement.
-  with --|> asynchronable.
-  starred --|> expression.
-  joinedStr --|> expression.
-  classDeclaration --|> statement.
-  "classDeclaration --|> declaration."
-  functionDeclaration --|> statement.
- " functionDeclaration --|> declaration."
-  varRef --|> assignedTarget.
-  varRef --|> expression.
-  attributeNav --|> assignedTarget.
-  attributeNav --|> expression.
-  integer --|> literal.
-  collection --|> literal.
-  boolean --|> literal.
-  none --|> literal.
-  subscript --|> assignedTarget.
-  subscript --|> expression.
-  comprehensionExpression --|> literal.
-  string --|> literal.
-  string --|> joinedStringItem.
-  list --|> collection.
-  set --|> collection.
-  trueLiteral --|> boolean.
-  falseLiteral --|> boolean.
-  dict --|> collection.
-  comprehensionList --|> comprehensionExpression.
-  comprehensionDict --|> comprehensionExpression.
-  comprehensionSet --|> comprehensionExpression.
-  generatorExp --|> comprehensionExpression.
-  tuple --|> collection.
-  tuple --|> assignedTarget.
+	literal --|> expression.
+	lambda --|> expression.
+	call --|> expression.
+	with --|> statement.
+	with --|> asynchronable.
+	starred --|> expression.
+	joinedStr --|> expression.
+	classDeclaration --|> statement.
+	"classDeclaration --|> declaration."
+	functionDeclaration --|> statement.
+	" functionDeclaration --|> declaration."
+	varRef --|> assignedTarget.
+	varRef --|> expression.
+	attributeNav --|> assignedTarget.
+	attributeNav --|> expression.
+	integer --|> literal.
+	collection --|> literal.
+	boolean --|> literal.
+	none --|> literal.
+	subscript --|> assignedTarget.
+	subscript --|> expression.
+	comprehensionExpression --|> literal.
+	string --|> literal.
+	string --|> joinedStringItem.
+	list --|> collection.
+	set --|> collection.
+	trueLiteral --|> boolean.
+	falseLiteral --|> boolean.
+	dict --|> collection.
+	comprehensionList --|> comprehensionExpression.
+	comprehensionDict --|> comprehensionExpression.
+	comprehensionSet --|> comprehensionExpression.
+	generatorExp --|> comprehensionExpression.
+	tuple --|> collection.
+	tuple --|> assignedTarget.
+	assignExpression --|> expression
 ]
 
 { #category : #definition }

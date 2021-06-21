@@ -31,6 +31,12 @@ PharoToPythonExperimentTest >> methodString [
 	^ 'klm'
 ]
 
+{ #category : #accessing }
+PharoToPythonExperimentTest >> methodTemporaryAssignement [
+	| a |
+	a := 10
+]
+
 { #category : #tests }
 PharoToPythonExperimentTest >> testTranslateMethod [
 	| model pythonModel |
@@ -67,4 +73,15 @@ PharoToPythonExperimentTest >> testTranslateMethodString [
 	self assert: pythonModel name equals: #methodString.
 	self assertCollection: (pythonModel body collect: [:each | each expression value]) hasSameElements:{ 'klm' }.
 	self assert: pythonModel parameters isEmpty 
+]
+
+{ #category : #tests }
+PharoToPythonExperimentTest >> testTranslateMethodTemporaryAssignement [
+	| model pythonModel |
+	model := self importFASTPharo: #methodTemporaryAssignement.
+	pythonModel := PharoToPythonExperiment transformToPython: model.
+	self assert: pythonModel body first expression left value name equals: 'a'.
+	self assert: pythonModel body first expression right value equals: 10
+	
+	
 ]
