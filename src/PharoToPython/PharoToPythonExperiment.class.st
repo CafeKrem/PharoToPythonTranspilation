@@ -58,6 +58,22 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 			1 halt ].
 	result := (FASTPharoAssignmentExpression
 		suchAs:
+			{(#variable -> #'@var').
+			(#expression -> FASTPharoMessageSend
+				suchAs:
+					{(#selector -> #'@selector').
+					(#receiver -> #'@var').
+					(#arguments -> #'@arguments')})}) match: anExpression.
+	result isMatch
+		ifTrue: [ ^ FASTPythonoperationAssignement new
+				left: (self expressionRule: (result at: #var));
+				right: (self expressionRule: (result at: #arguments));
+				operation: (self selectorRule: (result at: #selector));
+				startPos: 0;
+				endPos: 1;
+				yourself ].
+	result := (FASTPharoAssignmentExpression
+		suchAs:
 			{(#variable -> #'@left').
 			(#expression -> #'@right')}) match: anExpression.
 	result isMatch

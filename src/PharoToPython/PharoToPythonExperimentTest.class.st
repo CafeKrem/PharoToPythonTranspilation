@@ -19,6 +19,12 @@ PharoToPythonExperimentTest >> method1 [
 ]
 
 { #category : #accessing }
+PharoToPythonExperimentTest >> methodIncrement [
+	| a |
+	a := a + 10 
+]
+
+{ #category : #accessing }
 PharoToPythonExperimentTest >> methodOperation [
 	1 + 2.
 	3 - 4.
@@ -63,6 +69,18 @@ PharoToPythonExperimentTest >> testTranslateMethodComputationOperation [
 	self
 		assertCollection: (allStatement collect: [ :each | each right value ])
 		hasSameElements: {2 . 4 . 6 . 8}
+]
+
+{ #category : #tests }
+PharoToPythonExperimentTest >> testTranslateMethodIncrementAssignement [
+	| model pythonModel |
+	model := self importFASTPharo: #methodIncrement.
+	pythonModel := PharoToPythonExperiment transformToPython: model.
+	self
+		assert: pythonModel body first expression left value name
+		equals: 'a'.
+	self assert: pythonModel body first expression right value equals: 10.
+	self assert: pythonModel body first expression operation equals: #+
 ]
 
 { #category : #tests }

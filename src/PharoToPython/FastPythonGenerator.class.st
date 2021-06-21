@@ -75,7 +75,8 @@ Class {
 		'null',
 		'scopable',
 		'returnFAST',
-		'expressionStatementFAST'
+		'expressionStatementFAST',
+		'operationAssignement'
 	],
 	#category : #PharoToPython
 }
@@ -101,7 +102,9 @@ FastPythonGenerator >> defineClasses [
 	statement := self remoteEntity: #Statement withPrefix: #FAST.
 	expression := self remoteEntity: #Expression withPrefix: #FAST.
 	returnFAST := self remoteEntity: #ReturnStatement withPrefix: #FAST.
-	expressionStatementFAST := self remoteEntity: #ExpressionStatement withPrefix: #FAST.
+	expressionStatementFAST := self
+		remoteEntity: #ExpressionStatement
+		withPrefix: #FAST.
 	"sPackage := builder newClassNamed: #SPackage.
   sModule := builder newClassNamed: #SModule."
 	operationSymbol := builder newClassNamed: #OperationSymbol.
@@ -167,7 +170,8 @@ FastPythonGenerator >> defineClasses [
 	comprehensionDict := builder newClassNamed: #ComprehensionDict.
 	comprehensionSet := builder newClassNamed: #ComprehensionSet.
 	generatorExp := builder newClassNamed: #GeneratorExp.
-	tuple := builder newClassNamed: #Tuple
+	tuple := builder newClassNamed: #Tuple.
+	operationAssignement := builder newClassNamed: #operationAssignement
 ]
 
 { #category : #definition }
@@ -180,7 +184,8 @@ FastPythonGenerator >> defineHierarchy [
 	pass --|> statement.
 	expressionStatement --|> expressionStatementFAST.
 	expression --|> subscriptionIndex.
-	try --|> statement.
+	operationAssignement --|> assignExpression.
+		try --|> statement.
 	raise --|> statement.
 	assert --|> statement.
 	" varDeclaration --|> declaration."
@@ -248,6 +253,7 @@ FastPythonGenerator >> defineProperties [
 	unOp property: #op type: #String.
 	exception property: #name type: #String.
 	exception property: #description type: #String.
+	operationAssignement property: #operation type: #String. 
 
 	"declaration property: #name type: #String."
 	asynchronable property: #isAsync type: #Boolean.
