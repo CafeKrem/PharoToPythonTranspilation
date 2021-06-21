@@ -33,7 +33,7 @@ PharoToPythonExperiment >> expressionRule: anExpression [
 						yourself ].
 			resultString := (FASTStringLiteral suchAs: {(#value -> #'@value')})
 				match: anExpression.
-			resultString
+			resultString isMatch
 				ifTrue: [ ^ FASTPythonString new
 						value: (resultString at: #value);
 						startPos: 0;
