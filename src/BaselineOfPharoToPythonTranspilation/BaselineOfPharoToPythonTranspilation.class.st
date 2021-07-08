@@ -10,6 +10,7 @@ BaselineOfPharoToPythonTranspilation >> baseline: spec [
 	spec
 		for: #common
 		do: [ spec package: 'PharoToPython'.
+			spec package: 'FastPython'.
 			spec
 				baseline: 'PTL'
 				with: [ spec repository: 'github:///cafekrem/PTL:main/src' ].
