@@ -2,8 +2,8 @@ Class {
 	#name : #FASTPythonParameter,
 	#superclass : #FASTPythonEntity,
 	#instVars : [
-		'#name => FMProperty',
-		'#functionDeclaration => FMOne type: #FASTPythonFunctionDeclaration opposite: #parameters'
+		'#functionDeclaration => FMOne type: #FASTPythonFunctionDeclaration opposite: #parameters',
+		'#name => FMProperty'
 	],
 	#category : #'PharoToPython-Entities'
 }
